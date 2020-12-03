@@ -2,13 +2,12 @@ import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import stripHtml from "string-strip-html";
-import axios from 'axios'
-;
+import axios from 'axios';
+
 import UserContext from '../../context/UserContext';
 import Title from '../../components/Title';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-
 
 export default function SignIn() {
   const { user, setUser } = useContext(UserContext)
@@ -27,7 +26,7 @@ export default function SignIn() {
       senha: stripHtml(password).result
     }
     axios
-      .post(`http://localhost:5000/api/users/sign-in`, data)
+      .post(`${process.env.API_URL}/api/users/sign-in`, data)
       .then(response => {
         console.log(response)
       })
