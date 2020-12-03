@@ -6,7 +6,7 @@ const UserContext = createContext();
 export default UserContext;
 
 export function UserProvider(props) {
-  const [user, setUser] = useLocalStorage('user', null);
+  const [user, setUser] = useLocalStorage('@myWallet', null);
 
   return (
     <UserContext.Provider {...props} value={{ user, setUser }}>

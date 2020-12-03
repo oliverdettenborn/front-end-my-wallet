@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Error from '../../components/Error';
 
 export default function FormSignUp(props) {
   const { 
@@ -55,17 +56,6 @@ export default function FormSignUp(props) {
       </Form>
   )
 };
-
-const Error = styled.span`
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'Raleway', sans-serif;
-  font-style: italic;
-  font-size: 14px;
-  line-height: 16px;
-  color: red;
-`;
 
 const Form = styled.form`
   display: flex;

@@ -6,59 +6,47 @@ import axios from 'axios';
 
 import UserContext from '../../context/UserContext';
 import Title from '../../components/Title';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import FormSignIn from './FormSignIn';
 
 export default function SignIn() {
-  const { user, setUser } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext);
   const [ email, setEmail ] = useState("");
   const [ password, setpassword ] = useState("");
+  const [ error, setError ] = useState(null)
   const history = useHistory();
 
   if(user && user.token){
-    return history.push('/');
+    history.push('/');
   }
 
   function handleSignIn(e){
     e.preventDefault();
     const data = {
       email: stripHtml(email).result,
-      senha: stripHtml(password).result
+      password: stripHtml(password).result
     }
     axios
-      .post(`${process.env.API_URL}/api/users/sign-in`, data)
+      .post(`${process.env.REACT_APP_API_URL}/users/sign-in`, data)
       .then(response => {
-        console.log(response)
+        setUser(response.data)
+        history.push('/');
       })
       .catch(err => {
-        console.log(err)
+        setError(err.message);
       })
   }
 
   return (
     <Container>
       <Title />
-      <Form onSubmit={handleSignIn}>
-        <Input 
-          type='email'
-          placeholder='E-mail'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Input 
-          type='password'
-          placeholder='Senha'
-          value={password}
-          onChange={(e) => setpassword(e.target.value)}
-        />
-        <Button
-          width='100%'
-          height='50px'
-          type='submit'
-        >
-          Entrar
-        </Button>
-      </Form>
+      <FormSignIn 
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setpassword={setpassword}
+        handleSignIn={handleSignIn}
+        error={error}
+      />
       <Link to='/sign-up'>
         <Span>Primeira vez? Cadastre-se!</Span>
       </Link>
@@ -84,10 +72,4 @@ const Span = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: #FFFFFF;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
 `;

@@ -20,12 +20,11 @@ export default function SignUp() {
   const history = useHistory();
 
   if(user && user.token){
-    return history.push('/');
+    history.push('/');
   }
 
   function handleSignUp(e){
     e.preventDefault();
-
     const data = {
       name: stripHtml(name).result,
       email: stripHtml(email).result,
@@ -34,7 +33,7 @@ export default function SignUp() {
     }
 
     const schema = joi.object({
-      name: joi.string().pattern(/^[\w]+$/).required(),
+      name: joi.string().pattern(/^[\w\s]+$/,'name must consist only of letters and space').required(),
       email: joi.string().required(),
       password: joi.string().alphanum().min(6).max(16).required(),
       confirmPassword: joi.ref('password')
@@ -52,14 +51,13 @@ export default function SignUp() {
             : 'O seu nome deve ser composto apenas de letras'
       );
     }
-
     axios
-      .post(`${process.env.API_URL}/api/users/sign-up`, data)
-      .then(response => {
-        console.log(response)
+      .post(`${process.env.REACT_APP_API_URL}/users/sign-up`, data)
+      .then(() => {
+        history.push('/sign-in');
       })
       .catch(err => {
-        console.log(err)
+        setError(err.message)
       })
   }
 
