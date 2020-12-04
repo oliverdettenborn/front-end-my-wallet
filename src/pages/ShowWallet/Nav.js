@@ -2,13 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { CgAdd } from 'react-icons/cg';
 import { CgRemove } from 'react-icons/cg';
+import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
 
-export default function Nav(props) {
+export default function Nav() {
+  const history = useHistory();
+
   return (
     <Container>
       <Button 
+        onClick={() => history.push('/entry')}
         width='48%'
         height='114px'
       >
@@ -17,7 +21,8 @@ export default function Nav(props) {
           Nova entrada
         </Description>
       </Button>
-      <Button 
+      <Button
+        onClick={() => history.push('/outgoing')}
         width='48%'
         height='114px'
       >

@@ -5,7 +5,7 @@ import axios from 'axios';
 import ItemWallet from './ItemWallet';
 import Loading from '../../components/Loading';
 
-export default function Wallet({ user, setUser, refresh }) {
+export default function Wallet({ user, setUser }) {
   const [ itemsWallet, setItemsWallet ] = useState([]);
   const [ total, setTotal ] = useState(null);
   const [ loading, setLoading ] = useState(true);
@@ -28,7 +28,7 @@ export default function Wallet({ user, setUser, refresh }) {
           setUser('');
         }
       })
-  }, [refresh]);
+  }, []);
 
   return (
     <Div>

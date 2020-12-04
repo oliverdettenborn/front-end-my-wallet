@@ -8,8 +8,12 @@ export default function Button(props) {
       type={props.type}
       width={props.width}
       height={props.height}
+      disabled={props.disabledButton}
     >
-      {props.children}
+      {props.disabledButton
+        ? '...'
+        : props.children
+      }
     </Item>
   )
 };
@@ -26,6 +30,7 @@ const Item = styled.button`
   font-size: 20px;
   line-height: 23px;
   color: #FFFFFF;
+  margin-top: 10px;
 
   :focus{
     outline: transparent;

@@ -9,20 +9,14 @@ import Wallet from './Wallet';
 
 export default function ShowWallet() {
   const { user, setUser } = useContext(UserContext);
-  const [ refresh, setRefresh ] = useState(false);
   const history = useHistory();
-
   if(!user || !user.token) history.push('/sign-in');
-
-  function reloadWallet(){
-    setRefresh(!refresh)
-  }
   
   return (
     <Main>
       <Header user={user} setUser={setUser} />
-      <Wallet user={user} refresh={refresh} setUser={setUser} />
-      <Nav reloadWallet={reloadWallet} /> 
+      <Wallet user={user} setUser={setUser} />
+      <Nav /> 
     </Main>
   )
 };

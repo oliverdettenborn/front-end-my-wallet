@@ -42,7 +42,6 @@ export default function SignUp() {
     const { error } = schema.validate(data);
     if(error){
       const placeError = error.details.map(e => e.path).join(",");
-      console.log(placeError,typeof(placeError))
       return setError(
         (placeError === 'password')
           ? 'Sua senha precisa ter entre 6 e 10 caracteres e ser composta de letras e números' 
