@@ -8,14 +8,14 @@ import Nav from './Nav';
 import Wallet from './Wallet';
 
 export default function ShowWallet() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const history = useHistory();
   if(!user || !user.token) history.push('/sign-in');
   
   return (
     <Main>
-      <Header user={user} setUser={setUser} />
-      <Wallet user={user} setUser={setUser} />
+      <Header />
+      <Wallet />
       <Nav /> 
     </Main>
   )
