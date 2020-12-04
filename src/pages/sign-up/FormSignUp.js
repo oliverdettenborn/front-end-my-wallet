@@ -16,7 +16,8 @@ export default function FormSignUp(props) {
     confirmPassword, 
     setconfirmPassword, 
     error,
-    handleSignUp
+    handleSignUp,
+    disabledButton
   } = props;
   
   return (
@@ -49,6 +50,7 @@ export default function FormSignUp(props) {
           width='100%'
           height='50px'
           type='submit'
+          disabledButton={disabledButton}
         >
           Cadastrar
         </Button>

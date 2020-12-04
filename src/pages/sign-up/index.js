@@ -15,7 +15,8 @@ export default function SignUp() {
   const [ email, setEmail ] = useState("");
   const [ password, setpassword ] = useState("");
   const [ confirmPassword, setconfirmPassword ] = useState("");
-  const [ error, setError ] = useState(null)
+  const [ error, setError ] = useState(null);
+  const [ disabledButton , setDisabledButton ] = useState(false);
 
   const history = useHistory();
 
@@ -25,6 +26,7 @@ export default function SignUp() {
 
   function handleSignUp(e){
     e.preventDefault();
+    setDisabledButton(true);
     const data = {
       name: stripHtml(name).result,
       email: stripHtml(email).result,
@@ -42,22 +44,26 @@ export default function SignUp() {
     const { error } = schema.validate(data);
     if(error){
       const placeError = error.details.map(e => e.path).join(",");
-      return setError(
+      setDisabledButton(false);
+      setError(
         (placeError === 'password')
           ? 'Sua senha precisa ter entre 6 e 10 caracteres e ser composta de letras e números' 
           : (placeError === 'confirmPassword')
             ? 'Confirmação de senha precisa ser igual a senha'
             : 'O seu nome deve ser composto apenas de letras'
       );
-    }
-    axios
+    }else{
+      axios
       .post(`${process.env.REACT_APP_API_URL}/users/sign-up`, data)
       .then(() => {
+        setDisabledButton(false);
         history.push('/sign-in');
       })
       .catch(err => {
+        setDisabledButton(false);
         setError(err.message)
       })
+    }
   }
 
   return (
@@ -74,6 +80,7 @@ export default function SignUp() {
         setconfirmPassword={setconfirmPassword}
         error={error}
         handleSignUp={handleSignUp}
+        disabledButton={disabledButton}
       />
       <Link to='/sign-in'>
         <Span>Já tem uma conta? Entre agora!</Span>

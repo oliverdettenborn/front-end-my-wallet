@@ -12,7 +12,8 @@ export default function SignIn() {
   const { user, setUser } = useContext(UserContext);
   const [ email, setEmail ] = useState("");
   const [ password, setpassword ] = useState("");
-  const [ error, setError ] = useState(null)
+  const [ error, setError ] = useState(null);
+  const [ disabledButton , setDisabledButton ] = useState(false);
   const history = useHistory();
 
   if(user && user.token){
@@ -21,6 +22,7 @@ export default function SignIn() {
 
   function handleSignIn(e){
     e.preventDefault();
+    setDisabledButton(true);
     const data = {
       email: stripHtml(email).result,
       password: stripHtml(password).result
@@ -28,11 +30,13 @@ export default function SignIn() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/users/sign-in`, data)
       .then(response => {
-        setUser(response.data)
+        setUser(response.data);
+        setDisabledButton(false);
         history.push('/');
       })
       .catch(err => {
         setError(err.message);
+        setDisabledButton(false);
       })
   }
 
@@ -46,6 +50,7 @@ export default function SignIn() {
         setpassword={setpassword}
         handleSignIn={handleSignIn}
         error={error}
+        disabledButton={disabledButton}
       />
       <Link to='/sign-up'>
         <Span>Primeira vez? Cadastre-se!</Span>

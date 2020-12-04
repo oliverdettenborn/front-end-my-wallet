@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 import Error from '../../components/Error';
 
 export default function FormSignIn(props) {
-  const { email, password, error, setEmail, setpassword, handleSignIn } = props;
+  const { email, password, error, setEmail, setpassword, handleSignIn, disabledButton } = props;
   return (
     <Form onSubmit={handleSignIn}>
       <Input 
@@ -25,6 +25,7 @@ export default function FormSignIn(props) {
         width='100%'
         height='50px'
         type='submit'
+        disabledButton={disabledButton}
       >
         Entrar
       </Button>
