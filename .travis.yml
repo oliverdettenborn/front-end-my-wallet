@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - lts/*
+os: linux
+dist: focal
+install:
+  - bash ./.build-scripts/check-if-exists.sh ./package.json
+  - bash ./.build-scripts/check-if-exists.sh ./package-lock.json
+  - bash ./.build-scripts/check-if-do-not-exist.sh ./node_modules
+  - bash ./.build-scripts/check-if-do-not-exist.sh ./.env
+  - bash ./.build-scripts/check-if-do-not-exist.sh ./dist
+  - bash ./.build-scripts/check-if-do-not-exist.sh ./build
+  - npm i
+  - npm run build --if-present
+  - bash ./.build-scripts/check-server-presence.sh ./
+  - bash ./.build-scripts/check-server-dependencies.sh
+  - bash ./.build-scripts/check-server-startup.sh
+script: skip
+notifications:
+  slack:
+    rooms:
+      secure: bRt055K2s7lxH59KoK7g8AKiXvVeUuH9fF1TU1hY9/vdDtcWCw2d6hbGBSFdEMjCeHdgmSq3x+kZe9zAONOWPyxirkluP3sL7As6xPoCXSHkgNJGhmAvPW+YY6h83cAYsrcXJShjzb/xc1/494zoTMjGdAx/xwz72BlF8xbkbuPfsgmPxd8AJQX/2a+as7JiuCNMHJ/J5nm+6DtrqhglhTwKZLpR1L1/OIBkzsDiUfLpXG/MBNREFwOTDBYoMOJbtCr8YUVyiTmN3t6iIqiNrrXBBWA7yTa0KXzqgKhIXSbzXKNUamv08tgRn2rQKth2QLivUcDTd92AWXWcOZPE/87CFdNcHSpxp454PQEWiyROe/1wA8A+17ovDdpc9GjW9/5VFsEIZmanysfXL+5rYh6PT5LLxB07MT4PgtuYWuSKwa3fpzPw8khvnsHhavT5FyT19NxVsZG64X6TVdOUxF+J1ET4QdCuN7EqVkIRYYvPuBFkBNestiXvgWxXqAAbTMHdcFYBR4Fe7HBLzKmxox0t2ZiJRsDFuAaWUOgan19zKqwFHrz0UDPjqEO7Py08XMzOfMZhrYUTHYOwZNJGCacOFGlb7o2QanwL2qj4acXaYymsHIUb0we0I6z/TYLEAl6+2G++YWjGiU3F8OM2ra7bJExuxWm3gLPByXHDQ/c=
+    template:
+      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} in PR <%{pull_request_url}|#%{pull_request_number}> by %{author} %{result} in %{duration}. Message: %{message}"
