@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function ItemWallet({ item }) {
-  const { date, description, value, type } = item;
+  const { insertionDate, description, amount, kind } = item;
 
   return (
     <Container>
-      <Date>{date}</Date>
+      <Date>{insertionDate}</Date>
       <Description>{description}</Description>
       <Value
-        color={type === 'entry' ? '#03AC00' : '#C70000'}
-      >{value}</Value>
+        color={kind === 'entry' ? '#03AC00' : '#C70000'}
+      >{amount}</Value>
     </Container>
   )
 }
