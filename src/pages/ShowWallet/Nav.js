@@ -9,7 +9,7 @@ export default function Nav(props) {
   return (
     <Container>
       <Button 
-        width='155px'
+        width='48%'
         height='114px'
       >
         <Description>
@@ -18,7 +18,7 @@ export default function Nav(props) {
         </Description>
       </Button>
       <Button 
-        width='155px'
+        width='48%'
         height='114px'
       >
         <Description>
@@ -31,13 +31,13 @@ export default function Nav(props) {
 }
 
 const Container = styled.nav`
+  width: calc(100% - 50px);
   display: flex;
   justify-content: space-between;
-  width: 100%;
   height: 145px;
   position: fixed;
   bottom: 0;
-  padding: 15px 25px;
+  padding: 15px 0;
 `;
 
 const Description = styled.div`

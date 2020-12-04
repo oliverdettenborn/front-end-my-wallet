@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
+import styled from 'styled-components';
 
 import Header from './Header';
 import Nav from './Nav';
@@ -13,10 +14,16 @@ export default function ShowWallet() {
   if(!user || !user.token) history.push('/sign-in');
   
   return (
-    <>
+    <Main>
       <Header user={user} setUser={setUser} />
-      <Wallet />
+      <Wallet user={user} />
       <Nav /> 
-    </>
+    </Main>
   )
 };
+
+const Main = styled.main`
+  width: 100%;
+  height: 100%;
+  padding: 0 25px;
+`;

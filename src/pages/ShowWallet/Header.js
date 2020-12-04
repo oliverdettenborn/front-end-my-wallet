@@ -35,7 +35,6 @@ const Container = styled.header`
   align-items: center;
   height: 75px;
   width: 100%;
-  padding: 0 25px;
   color: #FFFFFF;
 
   svg{
