@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import ItemWallet from './ItemWallet';
+import Loading from '../../components/Loading';
 
 export default function Wallet({ user }) {
   const [ itemsWallet, setItemsWallet ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
 
   return (
     <Container>
       {
-        itemsWallet.length === 0
-          ? <Text>Não há registros de entrada ou saída</Text>
-          : itemsWallet.map(item => 
-            <ItemWallet key={item.id} item={item} />
-          )
+        (loading)
+          ? <Loading />
+          : itemsWallet.length === 0
+            ? <Text>Não há registros de entrada ou saída</Text>
+            : itemsWallet.map(item => 
+              <ItemWallet key={item.id} item={item} />
+            )
       }
     </Container>
   )
