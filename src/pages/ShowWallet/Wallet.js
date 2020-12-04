@@ -30,7 +30,7 @@ export default function Wallet() {
           setUser('');
         }
       })
-  }, []);
+  }, [user.token, setUser]);
 
   return (
     <Div>
