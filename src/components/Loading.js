@@ -6,7 +6,7 @@ export default function Loading() {
 };
 
 const Spin = styled.img`
-  width: 90%;
+  width: 60%;
   height: auto;
   margin: auto 0;
 `;

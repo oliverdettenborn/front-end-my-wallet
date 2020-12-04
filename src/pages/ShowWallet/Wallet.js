@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import ItemWallet from './ItemWallet';
 import Loading from '../../components/Loading';
 
-export default function Wallet({ user }) {
+export default function Wallet({ user, setUser, refresh }) {
   const [ itemsWallet, setItemsWallet ] = useState([]);
   const [ loading, setLoading ] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/user/wallet`,
+        {headers : {'Authorization' : `Bearer ${user.token}`}}
+      )
+      .then(response => {
+        setItemsWallet([...response.data])
+        setTimeout(() => {
+          setLoading(false)
+        },1000)
+      })
+      .catch(err => {
+        if(err.response.status === 401){
+          setUser('');
+        }
+      })
+  }, [refresh]);
 
   return (
     <Container>
