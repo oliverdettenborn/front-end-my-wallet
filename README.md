@@ -2,7 +2,7 @@
   <img src="public/load.gif" width="175" alt="MyWallet" />
 </p>
 
-# My Wallet
+# My Wallet (FrontEnd)
 
  ![license](https://img.shields.io/github/license/thaliadettenborn/front-end-my-wallet?style=flat-square) ![total lines](https://img.shields.io/tokei/lines/github/thaliadettenborn/front-end-my-wallet) ![last commit](https://img.shields.io/github/last-commit/thaliadettenborn/front-end-my-wallet?style=flat-square) ![issues](https://img.shields.io/github/package-json/v/thaliadettenborn/front-end-my-wallet?style=flat-square) ![forks](https://img.shields.io/github/forks/thaliadettenborn/front-end-my-wallet?style=flat-square) 
 
@@ -18,6 +18,8 @@
     <a href="#author">Author</a>
 </p>
 
+<br><br>
+
 ### Features
 - [x] Registration and login<br>
 - [x] Initial screen listing all posted entry and exit transactions<br>
@@ -29,6 +31,8 @@
 - [ ] Searched period filtering: "All" / "7 days" / "15 days" / "30 days"<br>
 - [ ] Category management for inputs or outputs<br>
 - [ ] Category filtering<br>
+
+<br><br>
 
 ### Tech Stack
 Languages:<br>
@@ -65,12 +69,24 @@ Version Control:<br>
   <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
 </p>
 
+<br><br>
+
 ### Deploy
 
 The application layout is available on Vercel:
 <a style='margin-left: 10px;' href='http://front-end-my-wallet-git-main.thaliadettenborn.vercel.app/' target='_blank'>
   <img src='https://img.shields.io/badge/vercel%20-%23000000.svg?&style=for-the-badge&logo=vercel&logoColor=white'>
 </a>
+
+<br><br>
+## Contributors
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/responde-ai"><img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/40724166?s=200&v=4" width="100px;" alt=""/><br /><sub><b>Responde Aí</b></sub></a><br />
+  </tr>
+</table>
+
+<br><br>
 
 ### Author
 ---
